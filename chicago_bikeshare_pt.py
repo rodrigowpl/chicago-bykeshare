@@ -102,9 +102,18 @@ input("Aperte Enter para continuar...")
 # TAREFA 5
 # TODO: Crie uma função para contar os gêneros. Retorne uma lista.
 # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
+def count_item(data_list, gender):
+    count = 0
+
+    for line in data_list:
+        is_gender = line[6] == gender
+        if is_gender:
+            count += 1
+    return count
+
 def count_gender(data_list):
-    male = 0
-    female = 0
+    male = count_item(data_list, 'Male')
+    female = count_item(data_list, 'Female')
     return [male, female]
 
 
