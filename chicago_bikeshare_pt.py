@@ -32,6 +32,11 @@ print("\n\nTAREFA 1: Imprimindo as primeiras 20 amostras")
 # Vamos mudar o data_list para remover o cabeçalho dele.
 data_list = data_list[1:]
 
+for index, line in enumerate(data_list):
+    if index <= 20:
+        print('Line: {} - {}'.format(index, line))
+
+
 # Nós podemos acessar as features pelo índice
 # Por exemplo: sample[6] para imprimir gênero, ou sample[-2]
 
@@ -189,15 +194,15 @@ input("Aperte Enter para continuar...")
 # TAREFA 11
 # Volte e tenha certeza que você documentou suas funções. Explique os parâmetros de entrada, a saída, e o que a função faz. Exemplo:
 # def new_function(param1: int, param2: str) -> list:
-      """
-      Função de exemplo com anotações.
-      Argumentos:
-          param1: O primeiro parâmetro.
-          param2: O segundo parâmetro.
-      Retorna:
-          Uma lista de valores x.
+"""
+Função de exemplo com anotações.
+Argumentos:
+    param1: O primeiro parâmetro.
+    param2: O segundo parâmetro.
+Retorna:
+    Uma lista de valores x.
 
-      """
+"""
 
 input("Aperte Enter para continuar...")
 # TAREFA 12 - Desafio! (Opcional)
