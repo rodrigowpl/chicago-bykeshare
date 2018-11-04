@@ -81,6 +81,13 @@ input("Aperte Enter para continuar...")
 male = 0
 female = 0
 
+for line in data_list:
+    is_male = line[6] == 'Male'
+    is_female = line[6] == 'Female'
+    if is_male:
+        male += 1
+    if is_female:
+        female += 1
 
 # Verificando o resultado
 print("\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
