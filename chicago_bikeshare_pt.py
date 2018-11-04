@@ -132,7 +132,9 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
 def most_popular_gender(data_list):
-    answer = ""
+    male_count = count_item(data_list, 'Male')
+    female_count= count_item(data_list, 'Female')
+    answer = 'Male' if male_count > female_count else 'Female'
     return answer
 
 
@@ -160,6 +162,31 @@ input("Aperte Enter para continuar...")
 # TAREFA 7
 # TODO: Crie um gráfico similar para user_types. Tenha certeza que a legenda está correta.
 print("\nTAREFA 7: Verifique o gráfico!")
+
+def count_type_item(data_list, index):
+    count = 0
+
+    for line in data_list:
+        is_type = line[5] == index
+        if is_type:
+            count += 1
+    return count
+
+def count_types(data_list):
+    customer = count_type_item(data_list, 'Customer')
+    subscriber = count_type_item(data_list, 'Subscriber')
+    return [customer, subscriber]
+
+gender_list = column_to_list(data_list, -3)
+types = ["Customer", "Subscriber"]
+quantity = count_types(data_list)
+y_pos = list(range(len(types)))
+plt.bar(y_pos, quantity)
+plt.ylabel('Quantidade')
+plt.xlabel('Tipo')
+plt.xticks(y_pos, types)
+plt.title('Quantidade por tipo')
+plt.show(block=True)
 
 
 input("Aperte Enter para continuar...")
