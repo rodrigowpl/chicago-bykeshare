@@ -246,7 +246,7 @@ input("Aperte Enter para continuar...")
 male, female = count_gender(data_list)
 print("\nTAREFA 8: Por que a condição a seguir é Falsa?")
 print("male + female == len(data_list):", male + female == len(data_list))
-answer = "Devido ao gênero não ser obrigatório alguns usuário não tem esse valor preenchido"
+answer = "Devido ao gênero não ser obrigatório alguns usuários não tem esse valor preenchido"
 print("resposta:", answer)
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
@@ -314,11 +314,24 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função para contar tipos de usuários, sem definir os tipos
 # para que nós possamos usar essa função com outra categoria de dados.
 print("Você vai encarar o desafio? (yes ou no)")
-answer = "no"
+answer = "yes"
+
+"""
+Função para calcular a ocorrência do valor de uma categoria na lista
+Argumentos:
+    column_list: Listagem da coluna
+Retorna:
+    A quantidade de ocorrência de uma categoria
+
+"""
 
 def count_items(column_list):
-    item_types = []
+    item_types = list(set(column_list))
     count_items = []
+
+    for item in item_types:
+        count_items.append(column_list.count(item))
+
     return item_types, count_items
 
 
