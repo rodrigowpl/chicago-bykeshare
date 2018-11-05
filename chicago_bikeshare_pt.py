@@ -56,6 +56,15 @@ for index, line in enumerate(data_list):
 input("Aperte Enter para continuar...")
 # TAREFA 3
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
+"""
+Função para transformar uma coluna em uma lista
+Argumentos:
+    data: lista do arquivo
+    index: índice da coluna que irá ser transformada em lista
+Retorna:
+    Uma lista da coluna
+
+"""
 def column_to_list(data, index):
     column_list = []
     for item in data:
@@ -102,6 +111,15 @@ input("Aperte Enter para continuar...")
 # TAREFA 5
 # TODO: Crie uma função para contar os gêneros. Retorne uma lista.
 # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
+"""
+Função para fazer a contagem de quantidade de um genero especifico na lista
+Argumentos:
+    data_list: Lista do arquivo
+    gender: Gênero que será contado
+Retorna:
+    A quantidade que o genero aparece na lista
+
+"""
 def count_item(data_list, gender):
     count = 0
 
@@ -111,6 +129,14 @@ def count_item(data_list, gender):
             count += 1
     return count
 
+"""
+Função de faz a contagem dos generos na lista
+Argumentos:
+    data_list: Lista do arquivo.
+Retorna:
+    A quantidade dos generos Male e Female
+
+"""
 def count_gender(data_list):
     male = count_item(data_list, 'Male')
     female = count_item(data_list, 'Female')
@@ -131,6 +157,14 @@ input("Aperte Enter para continuar...")
 # TAREFA 6
 # TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
+"""
+Função para calcular qual genero é o que mais aparece na lista
+Argumentos:
+    data_list: Lista do arquivo
+Retorna:
+    Retorna qual é o genero que mais aparece
+
+"""
 def most_popular_gender(data_list):
     male_count = count_item(data_list, 'Male')
     female_count= count_item(data_list, 'Female')
@@ -156,13 +190,22 @@ plt.ylabel('Quantidade')
 plt.xlabel('Gênero')
 plt.xticks(y_pos, types)
 plt.title('Quantidade por Gênero')
-# plt.show(block=True)
+plt.show(block=True)
 
 input("Aperte Enter para continuar...")
 # TAREFA 7
 # TODO: Crie um gráfico similar para user_types. Tenha certeza que a legenda está correta.
 print("\nTAREFA 7: Verifique o gráfico!")
 
+"""
+Função que faz a contade de tipos na lista
+Argumentos:
+    data_list: Lista do arquivo
+    index: Índice que irá ser calculado
+Retorna:
+    A quantidade que o tipo aparece na lista
+
+"""
 def count_type_item(data_list, index):
     count = 0
 
@@ -172,6 +215,14 @@ def count_type_item(data_list, index):
             count += 1
     return count
 
+"""
+Função para calcular os tipos
+Argumentos:
+    data_list: Lista do arquivo
+Retorna:
+    A quantidade que Customer e Subscriber aparece na lista
+
+"""
 def count_types(data_list):
     customer = count_type_item(data_list, 'Customer')
     subscriber = count_type_item(data_list, 'Subscriber')
@@ -186,7 +237,7 @@ plt.ylabel('Quantidade')
 plt.xlabel('Tipo')
 plt.xticks(y_pos, types)
 plt.title('Quantidade por tipo')
-# plt.show(block=True)
+plt.show(block=True)
 
 
 input("Aperte Enter para continuar...")
@@ -234,7 +285,7 @@ input("Aperte Enter para continuar...")
 # TAREFA 10
 # Gênero é fácil porque nós temos apenas algumas opções. E quanto a start_stations? Quantas opções ele tem?
 # TODO: Verifique quantos tipos de start_stations nós temos, usando set()
-start_stations = set()
+start_stations = set(column_to_list(data_list, 3))
 
 print("\nTAREFA 10: Imprimindo as start stations:")
 print(len(start_stations))
