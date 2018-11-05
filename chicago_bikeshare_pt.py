@@ -156,7 +156,7 @@ plt.ylabel('Quantidade')
 plt.xlabel('Gênero')
 plt.xticks(y_pos, types)
 plt.title('Quantidade por Gênero')
-plt.show(block=True)
+# plt.show(block=True)
 
 input("Aperte Enter para continuar...")
 # TAREFA 7
@@ -186,7 +186,7 @@ plt.ylabel('Quantidade')
 plt.xlabel('Tipo')
 plt.xticks(y_pos, types)
 plt.title('Quantidade por tipo')
-plt.show(block=True)
+# plt.show(block=True)
 
 
 input("Aperte Enter para continuar...")
@@ -213,6 +213,12 @@ max_trip = 0.
 mean_trip = 0.
 median_trip = 0.
 
+trip_duration_list = [int(item) for item in trip_duration_list]
+trip_duration_list = sorted(trip_duration_list)
+min_trip = trip_duration_list[0]
+max_trip = trip_duration_list[-1]
+mean_trip = sum(trip_duration_list)/len(trip_duration_list)
+median_trip = trip_duration_list[int(len(trip_duration_list)/2)]
 
 print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
 print("Min: ", min_trip, "Max: ", max_trip, "Média: ", mean_trip, "Mediana: ", median_trip)
