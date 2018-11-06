@@ -46,9 +46,8 @@ input("Aperte Enter para continuar...")
 
 print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
 
-for index, line in enumerate(data_list):
-    if index <= 20:
-        print('Gender {} - {}'.format(index, line[6]))
+for index, line in enumerate(data_list[:20],start=1):
+    print('Gender {} - {}'.format(index, line[-2]))
 
 # Ótimo! Nós podemos pegar as linhas(samples) iterando com um for, e as colunas(features) por índices.
 # Mas ainda é difícil pegar uma coluna em uma lista. Exemplo: Lista com todos os gêneros
@@ -56,16 +55,15 @@ for index, line in enumerate(data_list):
 input("Aperte Enter para continuar...")
 # TAREFA 3
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
-"""
-Função para transformar uma coluna em uma lista
-Argumentos:
-    data: lista do arquivo
-    index: índice da coluna que irá ser transformada em lista
-Retorna:
-    Uma lista da coluna
-
-"""
 def column_to_list(data, index):
+    """
+    Função para transformar uma coluna em uma lista
+    Argumentos:
+        data: lista do arquivo
+        index: índice da coluna que irá ser transformada em lista
+    Retorna:
+        Uma lista da coluna
+    """
     column_list = []
     for item in data:
         column_list.append(item[index])
@@ -111,16 +109,16 @@ input("Aperte Enter para continuar...")
 # TAREFA 5
 # TODO: Crie uma função para contar os gêneros. Retorne uma lista.
 # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
-"""
-Função para fazer a contagem de quantidade de um genero especifico na lista
-Argumentos:
-    data_list: Lista do arquivo
-    gender: Gênero que será contado
-Retorna:
-    A quantidade que o genero aparece na lista
-
-"""
 def count_item(data_list, gender):
+    """
+    Função para fazer a contagem de quantidade de um genero especifico na lista
+    Argumentos:
+        data_list: Lista do arquivo
+        gender: Gênero que será contado
+    Retorna:
+        A quantidade que o genero aparece na lista
+
+    """
     count = 0
 
     for line in data_list:
@@ -129,15 +127,15 @@ def count_item(data_list, gender):
             count += 1
     return count
 
-"""
-Função de faz a contagem dos generos na lista
-Argumentos:
-    data_list: Lista do arquivo.
-Retorna:
-    A quantidade dos generos Male e Female
-
-"""
 def count_gender(data_list):
+    """
+    Função de faz a contagem dos generos na lista
+    Argumentos:
+        data_list: Lista do arquivo.
+    Retorna:
+        A quantidade dos generos Male e Female
+
+    """
     male = count_item(data_list, 'Male')
     female = count_item(data_list, 'Female')
     return [male, female]
@@ -157,18 +155,27 @@ input("Aperte Enter para continuar...")
 # TAREFA 6
 # TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
-"""
-Função para calcular qual genero é o que mais aparece na lista
-Argumentos:
-    data_list: Lista do arquivo
-Retorna:
-    Retorna qual é o genero que mais aparece
-
-"""
 def most_popular_gender(data_list):
+    """
+    Função para calcular qual genero é o que mais aparece na lista
+    Argumentos:
+        data_list: Lista do arquivo
+    Retorna:
+        Retorna qual é o genero que mais aparece
+
+    """
     male_count = count_item(data_list, 'Male')
     female_count= count_item(data_list, 'Female')
-    answer = 'Male' if male_count > female_count else 'Female'
+
+    if male_count > female_count:
+        answer = 'Male'
+
+    if female_count > male_count:
+        answer = 'Female'
+
+    if male_count == female_count:
+        answer = 'Equal'
+
     return answer
 
 
@@ -197,16 +204,16 @@ input("Aperte Enter para continuar...")
 # TODO: Crie um gráfico similar para user_types. Tenha certeza que a legenda está correta.
 print("\nTAREFA 7: Verifique o gráfico!")
 
-"""
-Função que faz a contade de tipos na lista
-Argumentos:
-    data_list: Lista do arquivo
-    index: Índice que irá ser calculado
-Retorna:
-    A quantidade que o tipo aparece na lista
-
-"""
 def count_type_item(data_list, index):
+    """
+    Função que faz a contade de tipos na lista
+    Argumentos:
+        data_list: Lista do arquivo
+        index: Índice que irá ser calculado
+    Retorna:
+        A quantidade que o tipo aparece na lista
+
+    """
     count = 0
 
     for line in data_list:
@@ -215,15 +222,15 @@ def count_type_item(data_list, index):
             count += 1
     return count
 
-"""
-Função para calcular os tipos
-Argumentos:
-    data_list: Lista do arquivo
-Retorna:
-    A quantidade que Customer e Subscriber aparece na lista
-
-"""
 def count_types(data_list):
+    """
+    Função para calcular os tipos
+    Argumentos:
+        data_list: Lista do arquivo
+    Retorna:
+        A quantidade que Customer e Subscriber aparece na lista
+
+    """
     customer = count_type_item(data_list, 'Customer')
     subscriber = count_type_item(data_list, 'Subscriber')
     return [customer, subscriber]
@@ -268,8 +275,18 @@ trip_duration_list = [int(item) for item in trip_duration_list]
 trip_duration_list = sorted(trip_duration_list)
 min_trip = trip_duration_list[0]
 max_trip = trip_duration_list[-1]
-mean_trip = sum(trip_duration_list)/len(trip_duration_list)
-median_trip = trip_duration_list[int(len(trip_duration_list)/2)]
+
+total_sum = 0
+for index in range(len(trip_duration_list)):
+    total_sum += trip_duration_list[index]
+mean_trip = total_sum/len(trip_duration_list)
+
+if len(trip_duration_list) % 2 == 0:
+    mid_1 = len(trip_duration_list)/2
+    mid_2 = index - 1
+    median_trip = (trip_duration_list[mid_1] + trip_duration_list[mid_2])/2
+else:
+    median_trip = trip_duration_list[int(len(trip_duration_list)/2)]
 
 print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
 print("Min: ", min_trip, "Max: ", max_trip, "Média: ", mean_trip, "Mediana: ", median_trip)
@@ -316,16 +333,16 @@ input("Aperte Enter para continuar...")
 print("Você vai encarar o desafio? (yes ou no)")
 answer = "yes"
 
-"""
-Função para calcular a ocorrência do valor de uma categoria na lista
-Argumentos:
-    column_list: Listagem da coluna
-Retorna:
-    A quantidade de ocorrência de uma categoria
-
-"""
 
 def count_items(column_list):
+    """
+    Função para calcular a ocorrência do valor de uma categoria na lista
+    Argumentos:
+        column_list: Listagem da coluna
+    Retorna:
+        A quantidade de ocorrência de uma categoria
+
+    """
     item_types = list(set(column_list))
     count_items = []
 
